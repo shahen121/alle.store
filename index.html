@@ -1,1 +1,366 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ژinco - Wholesale Medical Supplies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ckb">کوردی</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-pills"></i>
+                <span class="logo-text" data-en="Zinco" data-ar="زينكو" data-ckb="ژینکۆ">ژینکۆ</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home" data-ar="الرئيسية" data-ckb="سەرەکی">سەرەکی</a></li>
+                <li><a href="#products" data-en="Products" data-ar="المنتجات" data-ckb="محصولەکان">محصولەکان</a></li>
+                <li><a href="#about" data-en="About" data-ar="من نحن" data-ckb="دەربارەمان">دەربارەمان</a></li>
+                <li><a href="#contact" data-en="Contact" data-ar="تواصل معنا" data-ckb="پەیوەندی">پەیوەندی</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Premium Medical Supplies at Wholesale Prices" data-ar="مستلزمات طبية بأفضل أسعار الجملة" data-ckb="تەماتە پزیشکییەکان بە نرخێکی گونجاو">تەماتە پزیشکییەکان بە نرخێکی گونجاو</h1>
+                <p class="hero-desc" data-en="Your trusted partner for pharmaceutical and medical equipment wholesale distribution" data-ar="شريكك الموثوق لتوزيع الأدوية والمستلزمات الطبية بالجملة" data-ckb="هاوکارێکی باوەڕپێکراو بۆ دابەشکردنی دەرمان و تەماتە پزیشکییەکان بە نرخی بەکەڵە">هاوکارێکی باوەڕپێکراو بۆ دابەشکردنی دەرمان و تەماتە پزیشکییەکان بە نرخی بەکەڵە</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary" data-en="Browse Products" data-ar="تصفح المنتجات" data-ckb="بینینی محصولەکان">بینینی محصولەکان</a>
+                    <a href="#contact" class="btn btn-secondary" data-en="Get Quote" data-ar="احصل على عرض سعر" data-ckb="وەرگرتنی نرخ">وەرگرتنی نرخ</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num">500+</span>
+                    <span class="stat-label" data-en="Products" data-ar="منتج" data-ckb="محصول">محصول</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label" data-en="Brands" data-ar="علامة تجارية" data-ckb="براند">براند</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label" data-en="Support" data-ar="دعم" data-ckb="پشتیوانی">پشتیوانی</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section id="products" class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h2 class="section-title" data-en="Our Products" data-ar="منتجاتنا" data-ckb="محصولەکانمان">محصولەکانمان</h2>
+                <p class="section-desc" data-en="Browse our extensive catalog of medical supplies" data-ar="تصفح كتالوجنا الواسع من المستلزمات الطبية" data-ckb="بینینی کاتەلۆگی فراوانی تەماتە پزیشکییەکان">بینینی کاتەلۆگی فراوانی تەماتە پزیشکییەکان</p>
+            </div>
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label data-en="Category" data-ar="الفئة" data-ckb="پۆل">پۆل</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all" data-en="All Categories" data-ar="كل الفئات" data-ckb="هەموو پۆلەکان">هەموو پۆلەکان</option>
+                        <option value="medicines" data-en="Medicines" data-ar="أدوية" data-ckb="دەرمان">دەرمان</option>
+                        <option value="medical" data-en="Medical Equipment" data-ar="معدات طبية" data-ckb="ئامێرە پزیشکییەکان">ئامێرە پزیشکییەکان</option>
+                        <option value="supplies" data-en="Medical Supplies" data-ar="مستلزمات" data-ckb="کەلوپەلە پزیشکییەکان">کەلوپەلە پزیشکییەکان</option>
+                        <option value="vitamins" data-en="Vitamins & Supplements" data-ar="فيتامنيات ومكملات" data-ckb="ڤیتامین و تەواوکەرەکان">ڤیتامین و تەواوکەرەکان</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label data-en="Brand" data-ar="العلامة التجارية" data-ckb="براند">براند</label>
+                    <select id="brand-filter" class="filter-select">
+                        <option value="all" data-en="All Brands" data-ar="كل العلامات" data-ckb="هەموو براندەکان">هەموو براندەکان</option>
+                        <option value="pfizer">Pfizer</option>
+                        <option value="novartis">Novartis</option>
+                        <option value="roche">Roche</option>
+                        <option value="abbott">Abbott</option>
+                        <option value="merck">Merck</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label data-en="Price Range" data-ar="نطاق السعر" data-ckb="مەودای نرخ">مەودای نرخ</label>
+                    <select id="price-filter" class="filter-select">
+                        <option value="all" data-en="All Prices" data-ar="كل الأسعار" data-ckb="هەموو نرخەکان">هەموو نرخەکان</option>
+                        <option value="0-50">$0 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-500">$100 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                </div>
+                <div class="filter-group search-group">
+                    <label data-en="Search" data-ar="بحث" data-ckb="گەڕان">گەڕان</label>
+                    <div class="search-input">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" placeholder="..." data-en="Search products..." data-ar="ابحث عن منتج..." data-ckb="گەڕان بکە...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+            <div class="load-more">
+                <button class="btn btn-outline" data-en="Load More" data-ar="عرض المزيد" data-ckb="زیاتر بینین">زیاتر بینین</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title" data-en="Why Choose Zinco?" data-ar="لماذا تختار زينكو؟" data-ckb="بۆچی ژینکۆ هەڵبژێنیت؟">بۆچی ژینکۆ هەڵبژێنیت؟</h2>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3 data-en="Fast Delivery" data-ar="توصيل سريع" data-ckb">تەوەرانێن</h3>
+                                <p data-en="Same-day delivery for orders placed before 2 PM" data-ar="التوصيل في نفس اليوم للطلبات قبل الساعة 2" data-ckb="تەوەرانێن لەوەختەیەکدا بۆ داواکارییەکانی پێش کاتژمێر 2">تەوەرانێن لەوەختەیەکدا بۆ داواکارییەکانی پێش کاتژمێر 2</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3 data-en="Quality Guaranteed" data-ar="جودة مضمونة" data-ckb">جۆری دڵنیاکراو</h3>
+                                <p data-en="All products are FDA approved and certified" data-ar="جميع المنتجات معتمدة من FDA ومؤهلة" data-ckb="هەموو محصولەکان FDA تۆمارکراون و پشتگیریکراون">هەموو محصولەکان FDA تۆمارکراون و پشتگیریکراون</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3 data-en="24/7 Support" data-ar="دعم على مدار الساعة" data-ckb">پشتیوانی 24/7</h3>
+                                <p data-en="Dedicated support team available round the clock" data-ar="فريق دعم متاح على مدار الساعة" data-ckb">تیمی پشتیوانی بەردەوام بەردەستە">تیمی پشتیوانی بەردەوام بەردەستە</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3 data-en="Wholesale Discounts" data-ar="خصومات الجملة" data-ckb">داشکاندنی بەکەڵە</h3>
+                                <p data-en="Up to 40% discount on bulk orders" data-ar="خصم يصل إلى 40% على الطلبات الكبيرة" data-ckb="داشکاندن تا 40% بۆ داواکارییە گەورەکان">داشکاندن تا 40% بۆ داواکارییە گەورەکان</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=500&fit=crop" alt="Medical Warehouse">
+                        <div class="experience-badge">
+                            <span class="badge-num">15+</span>
+                            <span class="badge-text" data-en="Years Experience" data-ar="سنوات الخبرة" data-ckb">ساڵ ئەزموون">ساڵ ئەزموون</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h2 class="section-title" data-en="Get In Touch" data-ar="تواصل معنا" data-ckb">پەیوەندیمان پێوەبکە</h2>
+                <p class="section-desc" data-en="Request a quote or ask about our products" data-ar="اطلب عرض سعر أو اسأل عن منتجاتنا" data-ckb">داوای نرخ بکە یان پرسیارێک لەسەر محصولەکانمان بکە</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label data-en="Full Name" data-ar="الاسم الكامل" data-ckb">ناوی تەواو</label>
+                            <input type="text" class="form-input" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-en="Email" data-ar="البريد الإلكتروني" data-ckb">ئیمەیڵ</label>
+                                <input type="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-en="Phone" data-ar="الهاتف" data-ckb">تەلەفۆن</label>
+                                <input type="tel" class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-en="Company Name" data-ar="اسم الشركة" data-ckb">ناوی کۆمپانیا</label>
+                            <input type="text" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label data-en="Message" data-ar="الرسالة" data-ckb">پەیام</label>
+                            <textarea class="form-input" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" data-en="Send Message" data-ar="إرسال الرسالة" data-ckb">ناردنی پەیام</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4 data-en="Headquarters" data-ar="المقر الرئيسي" data-ckb">نى دەستەی سەرەکی</h4>
+                            <p data-en="Erbil, Kurdistan Region, Iraq" data-ar="أربيل، إقليم كردستان، العراق" data-ckb="هەولێر، هەرێمی کوردستان، عێراق">هەولێر، هەرێمی کوردستان، عێراق</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4 data-en="Phone" data-ar="الهاتف" data-ckb">تەلەفۆن</h4>
+                            <p>+964 750 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4 data-en="Email" data-ar="البريد الإلكتروني" data-ckb">ئیمەیڵ</h4>
+                            <p>info@zinco-med.com</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4 data-en="Working Hours" data-ar="ساعات العمل" data-ckb">کاتەکانی کارکردن</h4>
+                            <p data-en="24/7 Online Orders" data-ar="طلبات على مدار الساعة" data-ckb">داواکاری بەردەوام">داواکاری بەردەوام</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fa-solid fa-pills"></i>
+                        <span class="logo-text">ژینکۆ</span>
+                    </div>
+                    <p data-en="Your trusted partner for medical supplies wholesale in Kurdistan and Iraq" data-ar="شريكك الموثوق لتوريد المستلزمات الطبية بالجملة في كردستان والعراق" data-ckb="هاوکارێکی باوەڕپێکراو بۆ تەماتە پزیشکییەکان لە کوردستان و عێراق">هاوکارێکی باوەڕپێکراو بۆ تەماتە پزیشکییەکان لە کوردستان و عێراق</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-en="Quick Links" data-ar="روابط سريعة" data-ckb">لینکە خێراکان</h4>
+                    <ul>
+                        <li><a href="#home" data-en="Home" data-ar="الرئيسية" data-ckb="سەرەکی">سەرەکی</a></li>
+                        <li><a href="#products" data-en="Products" data-ar="المنتجات" data-ckb="محصولەکان">محصولەکان</a></li>
+                        <li><a href="#about" data-en="About Us" data-ar="من نحن" data-ckb">دەربارەمان">دەربارەمان</a></li>
+                        <li><a href="#contact" data-en="Contact" data-ar="تواصل معنا" data-ckb="پەیوەندی">پەیوەندی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-en="Categories" data-ar="الفئات" data-ckb">پۆلەکان</h4>
+                    <ul>
+                        <li><a href="#" data-en="Medicines" data-ar="أدوية" data-ckb="دەرمان">دەرمان</a></li>
+                        <li><a href="#" data-en="Medical Equipment" data-ar="معدات طبية" data-ckb="ئامێرە پزیشکییەکان">ئامێرە پزیشکییەکان</a></li>
+                        <li><a href="#" data-en="Medical Supplies" data-ar="مستلزمات" data-ckb="کەلوپەلە پزیشکییەکان">کەلوپەلە پزیشکییەکان</a></li>
+                        <li><a href="#" data-en="Vitamins" data-ar="فيتامنيات" data-ckb="ڤیتامینەکان">ڤیتامینەکان</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4 data-en="Newsletter" data-ar="النشرة البريدية" data-ckb">نامەی نوێ</h4>
+                    <p data-en="Subscribe for updates and offers" data-ar="اشترك للحصول على التحديثات والعروض" data-ckb">بەشداریکە بۆ نوێکاری و ئۆفەرەکان">بەشداریکە بۆ نوێکاری و ئۆفەرەکان</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="ئیمەیڵ">
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zinco Medical Supplies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 data-en="Admin Login" data-ar="تسجيل الدخول للأدمن" data-ckb">چوونەژوورەوەی ئەدمین</h3>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label data-en="Username" data-ar="اسم المستخدم" data-ckb">ناوی بەکارهێنەر</label>
+                    <input type="text" class="form-input" id="admin-username">
+                </div>
+                <div class="form-group">
+                    <label data-en="Password" data-ar="كلمة المرور" data-ckb">وشەی نهێنی</label>
+                    <input type="password" class="form-input" id="admin-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" data-en="Login" data-ar="تسجيل الدخول" data-ckb">چوونەژوورەوە</button>
+            </form>
+            <div class="admin-link">
+                <a href="admin.html" data-en="Go to Admin Panel" data-ar="الذهاب إلى لوحة الأدمن" data-ckb">بۆ پەنێڵی ئەدمین">بۆ پەنێڵی ئەدمین</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-en="Shopping Cart" data-ar="سلة الشراء" data-ckb">سەبەتەی کڕین</h3>
+            <button class="cart-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-en="Total" data-ar="الإجمالي" data-ckb">کۆی گشتی</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-full" data-en="Checkout" data-ar="إتمام الشراء" data-ckb="کڕین تەواوکردن">کڕین تەواوکردن</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
