@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Zinco Medical Supplies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #d1fae5;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Noto Sans Arabic', sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        [lang="en"] body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 24px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 24px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-logo i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .sidebar-logo span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .sidebar-menu {
+            padding: 0 12px;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            color: var(--gray-300);
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .menu-link:hover, .menu-link.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .menu-link i {
+            font-size: 1.1rem;
+            width: 24px;
+        }
+
+        .menu-badge {
+            margin-right: auto;
+            background: var(--danger);
+            color: var(--white);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 24px;
+        }
+
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding: 20px 24px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .header-title p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .header-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--danger);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .stat-card.primary::before { background: var(--primary); }
+        .stat-card.warning::before { background: var(--warning); }
+        .stat-card.danger::before { background: var(--danger); }
+        .stat-card.info::before { background: var(--info); }
+
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .stat-card.primary .stat-icon { background: var(--primary-light); color: var(--primary); }
+        .stat-card.warning .stat-icon { background: #fef3c7; color: var(--warning); }
+        .stat-card.danger .stat-icon { background: #fee2e2; color: var(--danger); }
+        .stat-card.info .stat-icon { background: #dbeafe; color: var(--info); }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .stat-change {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .stat-change.positive {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .stat-change.negative {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .card-action {
+            padding: 8px 16px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .card-action:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 16px;
+            text-align: right;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .orders-table th {
+            font-weight: 600;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .orders-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .orders-table tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .customer-name {
+            font-weight: 500;
+            color: var(--gray-800);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .status-badge.completed {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .status-badge.processing {
+            background: #dbeafe;
+            color: var(--info);
+        }
+
+        .amount {
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .product-item:hover {
+            background: var(--primary-light);
+            transform: translateX(8px);
+        }
+
+        .product-img {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--gray-400);
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .product-meta {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .chart-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .chart-filter {
+            padding: 8px 12px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            height: 180px;
+            padding: 20px 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .chart-bar:hover {
+            background: var(--primary);
+        }
+
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        .chart-bar span {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .chart-bar:hover span {
+            opacity: 1;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .activity-item:hover {
+            background: var(--primary-light);
+        }
+
+        .activity-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.order { background: #dbeafe; color: var(--info); }
+        .activity-icon.payment { background: var(--primary-light); color: var(--primary); }
+        .activity-icon.user { background: #fce7f3; color: #ec4899; }
+        .activity-icon.product { background: #fef3c7; color: var(--warning); }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .add-product-btn {
+            position: fixed;
+            bottom: 32px;
+            left: 320px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 50;
+        }
+
+        .add-product-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .table-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .pagination-info {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background: var(--gray-100);
+            border: none;
+            color: var(--gray-600);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        @media (max-width: 1400px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 80px;
+                padding: 24px 0;
+            }
+
+            .sidebar-logo span,
+            .menu-text,
+            .menu-badge {
+                display: none;
+            }
+
+            .sidebar-logo {
+                justify-content: center;
+                padding: 0 0 24px;
+            }
+
+            .menu-link {
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .main-content {
+                margin-right: 80px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .add-product-btn {
+                left: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-section {
+                grid-template-columns: 1fr;
+            }
+
+            .top-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        .submenu {
+            display: none;
+            padding-right: 24px;
+        }
+
+        .menu-item.active .submenu {
+            display: block;
+        }
+
+        .submenu .menu-link {
+            padding: 10px 14px;
+            font-size: 0.9rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-pills"></i>
+                <span>Zinco</span>
+            </div>
+            <nav class="sidebar-menu">
+                <div class="menu-item active">
+                    <a class="menu-link" onclick="showSection('dashboard')">
+                        <i class="fa-solid fa-grip"></i>
+                        <span class="menu-text" data-ar="لوحة التحكم" data-ckb="داشبۆرد" data-en="Dashboard">داشبۆرد</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('orders')">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                        <span class="menu-text" data-ar="الطلبات" data-ckb="داواکارییەکان" data-en="Orders">داواکارییەکان</span>
+                        <span class="menu-badge">12</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('products')">
+                        <i class="fa-solid fa-pills"></i>
+                        <span class="menu-text" data-ar="المنتجات" data-ckb="محصولەکان" data-en="Products">محصولەکان</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('customers')">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="menu-text" data-ar="العملاء" data-ckb="کڕیارەکان" data-en="Customers">کڕیارەکان</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('inventory')">
+                        <i class="fa-solid fa-warehouse"></i>
+                        <span class="menu-text" data-ar="المخزون" data-ckb="خەزنگە" data-en="Inventory">خەزنگە</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('reports')">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span class="menu-text" data-ar="التقارير" data-ckb="ڕاپۆرتەکان" data-en="Reports">ڕاپۆرتەکان</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" onclick="showSection('settings')">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="menu-text" data-ar="الإعدادات" data-ckb="هەڵسەنگاندن" data-en="Settings">هەڵسەنگاندن</span>
+                    </a>
+                </div>
+                <div class="menu-item" style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+                    <a href="index.html" class="menu-link">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span class="menu-text" data-ar="العودة للموقع" data-ckb="گەڕانەوە بۆ ماڵپەڕ" data-en="Back to Site">گەڕانەوە بۆ ماڵپەڕ</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 data-ar="لوحة التحكم" data-ckb="داشبۆرد" data-en="Dashboard">داشبۆرد</h1>
+                    <p data-ar="مرحباً،Admin" data-ckb"دەستخۆش، ئەدمین" data-en="Welcome, Admin">دەستخۆش، ئەدمین</p>
+                </div>
+                <div class="header-actions">
+                    <div class="header-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="header-btn">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge"></span>
+                    </div>
+                    <div class="header-btn">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="notification-badge"></span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="user-name">Admin</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <div class="stat-value">1,284</div>
+                        <div class="stat-label" data-ar="إجمالي الطلبات" data-ckb="کۆی داواکارییەکان" data-en="Total Orders">کۆی داواکارییەکان</div>
+                        <span class="stat-change positive">+12%</span>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-value">$45,280</div>
+                        <div class="stat-label" data-ar="المبيعات الشهرية" data-ckb="فرۆشی مانگانە" data-en="Monthly Sales">فرۆشی مانگانە</div>
+                        <span class="stat-change positive">+8%</span>
+                    </div>
+                    <div class="stat-card danger">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-value">856</div>
+                        <div class="stat-label" data-ar="العملاء النشطين" data-ckb="کڕیارە چالاکەکان" data-en="Active Customers">کڕیارە چالاکەکان</div>
+                        <span class="stat-change positive">+5%</span>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <div class="stat-value">342</div>
+                        <div class="stat-label" data-ar="منتجات منخفضة المخزون" data-ckb="محصولەکانی کەم" data-en="Low Stock Products">محصولەکانی کەم</div>
+                        <span class="stat-change negative">-3%</span>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title" data-ar="آخر الطلبات" data-ckb="دوا داواکارییەکان" data-en="Recent Orders">دوا داواکارییەکان</h3>
+                            <span class="card-action" data-ar="عرض الكل" data-ckb="بینینی هەموو" data-en="View All">بینینی هەموو</span>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th data-ar="رقم الطلب" data-ckb="ژمارەی داواکاری" data-en="Order ID">ژمارەی داواکاری</th>
+                                        <th data-ar="العميل" data-ckb="کڕیار" data-en="Customer">کڕیار</th>
+                                        <th data-ar="الحالة" data-ckb="دۆخ" data-en="Status">دۆخ</th>
+                                        <th data-ar="المبلغ" data-ckb="بڕی پارە" data-en="Amount">بڕی پارە</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="order-id">#ORD-2841</span></td>
+                                        <td><span class="customer-name">أحمد محمد</span></td>
+                                        <td><span class="status-badge pending">معلق</span></td>
+                                        <td><span class="amount">$1,240</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#ORD-2840</span></td>
+                                        <td><span class="customer-name">سارة كارتر</span></td>
+                                        <td><span class="status-badge completed">مكتمل</span></td>
+                                        <td><span class="amount">$890</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#ORD-2839</span></td>
+                                        <td><span class="customer-name">جاسم عمر</span></td>
+                                        <td><span class="status-badge processing">قيد المعالجة</span></td>
+                                        <td><span class="amount">$2,150</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#ORD-2838</span></td>
+                                        <td><span class="customer-name">د. رشيد</span></td>
+                                        <td><span class="status-badge completed">مكتمل</span></td>
+                                        <td><span class="amount">$560</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="table-pagination">
+                                <span class="pagination-info">Showing 1-4 of 24 orders</span>
+                                <div class="pagination-buttons">
+                                    <button class="pagination-btn">&lt;</button>
+                                    <button class="pagination-btn active">1</button>
+                                    <button class="pagination-btn">2</button>
+                                    <button class="pagination-btn">3</button>
+                                    <button class="pagination-btn">&gt;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title" data-ar="منتجات الأكثر مبيعاً" data-ckb="فرۆشترین محصولەکان" data-en="Top Products">فرۆشترین محصولەکان</h3>
+                            <span class="card-action" data-ar="عرض الكل" data-ckb="بینینی هەموو" data-en="View All">بینینی هەموو</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="products-list">
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fa-solid fa-pills"></i>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-title">Aspirin 100mg</div>
+                                        <div class="product-meta">156 sold</div>
+                                    </div>
+                                    <div class="product-price">$12.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fa-solid fa-heart-pulse"></i>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-title">Blood Pressure Monitor</div>
+                                        <div class="product-meta">89 sold</div>
+                                    </div>
+                                    <div class="product-price">$89.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fa-solid fa-mask-face"></i>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-title">Medical Masks</div>
+                                        <div class="product-meta">1,240 sold</div>
+                                    </div>
+                                    <div class="product-price">$8.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fa-solid fa-capsules"></i>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-title">Vitamin C 1000mg</div>
+                                        <div class="product-meta">234 sold</div>
+                                    </div>
+                                    <div class="product-price">$18.99</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-ar="المبيعات الأسبوعية" data-ckb="فرۆشی هەفتەیی" data-en="Weekly Sales">فرۆشی هەفتەیی</h3>
+                            <select class="chart-filter">
+                                <option>This Week</option>
+                                <option>Last Week</option>
+                                <option>Last Month</option>
+                            </select>
+                        </div>
+                        <div class="chart-bars">
+                            <div class="chart-bar" style="height: 40%;" data-value="Mon">
+                                <span>$1,200</span>
+                            </div>
+                            <div class="chart-bar" style="height: 65%;" data-value="Tue">
+                                <span>$1,850</span>
+                            </div>
+                            <div class="chart-bar" style="height: 85%;" data-value="Wed">
+                                <span>$2,400</span>
+                            </div>
+                            <div class="chart-bar" style="height: 55%;" data-value="Thu">
+                                <span>$1,650</span>
+                            </div>
+                            <div class="chart-bar" style="height: 95%;" data-value="Fri">
+                                <span>$2,750</span>
+                            </div>
+                            <div class="chart-bar" style="height: 75%;" data-value="Sat">
+                                <span>$2,100</span>
+                            </div>
+                            <div class="chart-bar" style="height: 45%;" data-value="Sun">
+                                <span>$1,300</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-ar="النشاط الأخير" data-ckb="چالاکی دوا" data-en="Recent Activity">چالاکی دوا</h3>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon order">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">New order received from <strong>Ahmed Mohamed</strong></div>
+                                    <div class="activity-time">2 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon payment">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">Payment received: <strong>$2,450</strong></div>
+                                    <div class="activity-time">15 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon user">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">New customer registered: <strong>Sara Carter</strong></div>
+                                    <div class="activity-time">1 hour ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon product">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">Low stock alert: <strong>Vitamin D 5000IU</strong></div>
+                                    <div class="activity-time">3 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button class="add-product-btn" title="Add New Product">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+
+    <script>
+        let currentLang = 'ckb';
+
+        function showSection(section) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.menu-item').classList.add('active');
+            
+            const titles = {
+                dashboard: { ar: 'لوحة التحكم', ckb: 'داشبۆرد', en: 'Dashboard' },
+                orders: { ar: 'الطلبات', ckb: 'داواکارییەکان', en: 'Orders' },
+                products: { ar: 'المنتجات', ckb: 'محصولەکان', en: 'Products' },
+                customers: { ar: 'العملاء', ckb: 'کڕیارەکان', en: 'Customers' },
+                inventory: { ar: 'المخزون', ckb: 'خەزنگە', en: 'Inventory' },
+                reports: { ar: 'التقارير', ckb: 'ڕاپۆرتەکان', en: 'Reports' },
+                settings: { ar: 'الإعدادات', ckb: 'هەڵسەنگاندن', en: 'Settings' }
+            };
+            
+            document.querySelector('.header-title h1').textContent = titles[section][currentLang];
+        }
+
+        document.querySelectorAll('.add-product-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert(currentLang === 'ckb' ? 'زیادکردنی محصولی نوێ' : currentLang === 'ar' ? 'إضافة منتج جديد' : 'Add new product');
+            });
+        });
+
+        document.querySelectorAll('.header-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const titles = ['Search', 'Notifications', 'Messages'];
+                alert(titles[index]);
+            });
+        });
+
+        document.querySelector('.user-profile').addEventListener('click', () => {
+            const options = [
+                { ckb: 'پرۆفایل', ar: 'الملف الشخصي', en: 'Profile' },
+                { ckb: 'هەڵسەنگاندن', ar: 'الإعدادات', en: 'Settings' },
+                { ckb: 'چوونەدەرەوە', ar: 'تسجيل الخروج', en: 'Logout' }
+            ];
+            alert(options.map(o => o[currentLang]).join('\n'));
+        });
+    </script>
+</body>
+</html>
